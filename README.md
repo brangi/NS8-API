@@ -124,3 +124,14 @@ Response:
   }
 ]
 ```
+
+### Todo, in the future:
+- Integrate https://jwt.io/ to authorize/authenticate properly
+- Use a persistent database
+- Create test cases
+- Refactor repetitive code specially in the endpoints logic
+
+
+
+
+
