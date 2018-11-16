@@ -37,7 +37,7 @@ POST localhost:4999/login
 ```json
 {
   "email": "test@test.com",
-  "password": "test",
+  "password": "test"
 }
 ```
 Response:
