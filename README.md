@@ -53,37 +53,74 @@ Response:
 ```bash
 GET /events/all
 ```
-
+Response:
 ```json
 [
   {
     "type": "LOGIN",
-    "created": 1542332153301
+    "created": 1542333383634,
+    "user": "test@ns8.com"
   },
   {
     "type": "LOGIN",
-    "created": 1542332534616
+    "created": 1542333385639,
+    "user": "test@ns8.com"
   },
   {
     "type": "LOGIN",
-    "created": 1542332535460
+    "created": 1542333386152,
+    "user": "test@ns8.com"
   },
   {
     "type": "LOGIN",
-    "created": 1542332537243
-  },
-.....
+    "created": 1542333431608,
+    "user": "other@lac.com"
+  }
 ]
 ```
 
 - Return all events for a single user
 
 ```bash
-GET localhost:4999/events/user?email=test@test.com
+GET localhost:4999/events/user?email=other@lac.com
+```
+Response:
+
+Response:
+```json
+[
+  {
+    "type": "LOGIN",
+    "created": 1542333903026,
+    "user": "other@lac.com"
+  }
+]
+
 ```
 
 - Return all events for the last day
 
 ```bash
 GET localhost:4999/events/lastday
+```
+
+Response:
+```json
+[
+  {
+    "type": "LOGIN",
+    "created": 1542333903026,
+    "user": "other@lac.com"
+  },
+  {
+    "type": "LOGIN",
+    "created": 1542333907333,
+    "user": "test@ns8.com"
+  },
+  {
+    "type": "LOGIN",
+    "created": 1542333908067,
+    "user": "test@ns8.com"
+  }
+]
 ```
