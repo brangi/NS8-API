@@ -51,7 +51,7 @@ Response:
 - Return all events for all users:
 
 ```bash
-GET /events/all
+GET localhost:4999/events/all
 ```
 Response:
 ```json
