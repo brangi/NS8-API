@@ -17,7 +17,7 @@ npm run dev
 Firstly, To create users :
 
 ```bash
-POST /signup
+POST localhost:4999/signup
 ```
 
 ```json
@@ -26,6 +26,33 @@ POST /signup
   "password": "test",
   "phone": "444-333-1111"
 }
+```
+
+Generate login events:
+
+```bash
+POST localhost:4999/login
+```
+
+```json
+{
+  "email": "test@test.com",
+  "password": "test",
+}
+```
+
+
+
+
+
+
+
+Response:
+```json
+{
+  "message": "Created user with email test@test.com"
+}
+
 ```
 
 - Return all events for all users:
