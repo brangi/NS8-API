@@ -8,21 +8,24 @@ class App {
   public users 
   public events
   constructor () {
+    //In-memory database(data clears once server is restarted)
     const db = new loki('loki.json')
     this.users = db.addCollection('users')
     this.events = db.addCollection('events')
     this.express = express()
     this.express.use(bodyParser.json());
-    this.mountRoutes()
+    this.buildEndpoints()
   }
 
-   public mountRoutes (): void {
+   public buildEndpoints (): void {
    const router = express.Router()
 
    router.get('/events/all', (req, res) => {
     const eventsAll = this.events.find({})
     const events  = [];
-    eventsAll.forEach(event => events.push({type: event.type,  created: event.meta.created } ))
+    eventsAll.forEach(event => 
+      events.push({type: event.type,  created: event.meta.created, user: event.user } )
+      )
     res.json(events)
   })
 
@@ -37,7 +40,7 @@ class App {
     }
     
     const events = []
-    this.events.find({user: email}).forEach(event => events.push({type: event.type,  created: event.meta.created } ))
+    this.events.find({user: email}).forEach(event => events.push({type: event.type,  created: event.meta.created, user: event.user } ))
     res.json(events)
   })
 
@@ -45,9 +48,11 @@ class App {
     const timeLastDay = moment().utc().valueOf() - 86400000
     const eventsAll = this.events.find({})
     const events  = []
+    // this could be solve also with a query directly on the created on the
+    // designated db without the need to filter the results
     eventsAll.forEach(event => {
       if(event.meta.created < timeLastDay) return
-      events.push({type: event.type,  created: event.meta.created })
+      events.push({type: event.type,  created: event.meta.created, user: event.user })
     })
     res.json(events)
   })
