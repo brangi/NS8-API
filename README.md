@@ -130,6 +130,8 @@ Response:
 - Use a persistent database
 - Create test cases
 - Refactor repetitive code specially in the endpoints logic
+- Add ssl for https before deploying on a production server
+
 
 
 
