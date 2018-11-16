@@ -28,7 +28,7 @@ POST localhost:4999/signup
 }
 ```
 
-Generate login events:
+Login (generate events):
 
 ```bash
 POST localhost:4999/login
@@ -40,13 +40,6 @@ POST localhost:4999/login
   "password": "test",
 }
 ```
-
-
-
-
-
-
-
 Response:
 ```json
 {
@@ -58,17 +51,39 @@ Response:
 - Return all events for all users:
 
 ```bash
-POST /events/all
+GET /events/all
 ```
 
 ```json
-{
-  "email": "test@test.com",
-  "password": "test",
-  "phone": "444-333-1111"
-}
+[
+  {
+    "type": "LOGIN",
+    "created": 1542332153301
+  },
+  {
+    "type": "LOGIN",
+    "created": 1542332534616
+  },
+  {
+    "type": "LOGIN",
+    "created": 1542332535460
+  },
+  {
+    "type": "LOGIN",
+    "created": 1542332537243
+  },
+.....
+]
 ```
 
+- Return all events for a single user
 
-- return all events for a single user
-- return all events for the last day
+```bash
+GET localhost:4999/events/user?email=test@test.com
+```
+
+- Return all events for the last day
+
+```bash
+GET localhost:4999/events/lastday
+```
